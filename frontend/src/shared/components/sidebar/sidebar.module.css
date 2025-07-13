@@ -1,0 +1,228 @@
+.navbar {
+  width: 260px;
+  height: 100vh; /* Keep this */
+  min-height: 100vh; /* Add this */
+  position: fixed; /* Change from relative to fixed */
+  left: 0;
+  top: 0;
+  overflow-y: auto; /* Change from hidden to auto */
+  overflow-x: hidden;
+  z-index: 1000; /* Ensure sidebar appears above other content */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+
+:global(.main-content) {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  min-height: 100vh;
+  padding-bottom: 24px; /* Add bottom padding for content */
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+}
+
+.navbarMain {
+  flex: 1;
+  padding: 24px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  padding: 0 24px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.version {
+  background: rgba(255, 255, 255, 0.15);
+  color: black;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 12px 24px;
+  margin: 2px 12px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.link:hover::before {
+  left: 100%;
+}
+
+.link[data-active] {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.link[data-active]::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(180deg, #ff6b6b, #ee5a24);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+}
+
+.linkIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+}
+
+.link:hover .linkIcon {
+  transform: scale(1.1);
+}
+
+.link[data-active] .linkIcon {
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+.footer {
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  bottom: 0;
+  background: inherit; /* Inherit the gradient background */
+  z-index: 2;
+}
+
+.footer .link {
+  margin: 2px 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .link:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .link {
+    padding: 16px 24px;
+    margin: 2px 16px;
+  }
+  
+  .header {
+    padding: 0 24px 16px;
+    margin-bottom: 16px;
+  }
+  
+  .navbarMain {
+    padding: 16px 0;
+  }
+  
+  .footer {
+    padding: 16px 0;
+  }
+}
+
+/* Dark mode alternative */
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+  
+  .version {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  
+  .link:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .link[data-active] {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+
+.navbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.navbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+@media screen and (min-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  body {
+    position: relative;
+  }
+}

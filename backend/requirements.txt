@@ -1,0 +1,41 @@
+# Sleep Monitoring Backend Dependencies
+
+# Core Flask Framework
+flask==2.3.3
+flask-cors==4.0.0
+flask-socketio==5.3.6
+
+# Database
+sqlite3  # Built into Python
+
+# WebSocket Support
+python-socketio==5.8.0
+eventlet==0.33.3
+
+# LED Strip Control (Raspberry Pi)
+rpi-ws281x==4.3.4
+
+# GPIO Control (Raspberry Pi)
+RPi.GPIO==0.7.1
+
+# Audio Support (Optional)
+pygame==2.5.2
+
+# Data Processing
+numpy==1.24.3
+
+# Development/Testing
+pytest==7.4.0
+pytest-flask==1.2.0
+
+# Logging
+colorlog==6.7.0
+
+# Date/Time Utilities
+python-dateutil==2.8.2
+
+# JSON Processing
+simplejson==3.19.1
+
+# HTTP Requests (for testing)
+requests==2.31.0
